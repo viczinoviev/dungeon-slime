@@ -1,0 +1,8 @@
+# Visual Studio caches
+.vs/
+bin/
+obj/
+*.user
+*.suo
+*.cache
+*.log
