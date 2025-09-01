@@ -7,6 +7,8 @@ namespace DungeonSlime
 {
     public class Game1 : Core
     {
+        // The MonoGame Logo texture
+        private Texture2D _logo;
 
         public Game1() : base("Dungeon Slime", 1280, 720, false)
         {
@@ -26,6 +28,8 @@ namespace DungeonSlime
             // TODO: use this.Content to load your game content here
 
             base.LoadContent();
+
+            _logo = Content.Load<Texture2D>("images/MonoGameLogo");
         }
 
         protected override void Update(GameTime gameTime)
@@ -39,10 +43,19 @@ namespace DungeonSlime
         }
 
         protected override void Draw(GameTime gameTime)
-        {
+        { 
             GraphicsDevice.Clear(Color.Wheat);
 
             // TODO: Add your drawing code here
+
+            // Begin the sprite batch to prepare for rendering
+            SpriteBatch.Begin();
+
+            // Draw the Logo texture
+            SpriteBatch.Draw(_logo, Vector2.Zero, Color.White);
+
+            // Always end the sprite batch when done rendering
+            SpriteBatch.End();
 
             base.Draw(gameTime);
         }
