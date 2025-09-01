@@ -111,6 +111,8 @@ namespace DungeonSlime
                 0.0f
             );
 
+            // When using layer depth, make sure to set SpriteSortMode.BackToFront or .FrontToBack
+            // in SpriteBatch.Begin()
 
             // Always end the sprite batch when done rendering
             SpriteBatch.End();
