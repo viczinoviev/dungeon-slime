@@ -51,8 +51,66 @@ namespace DungeonSlime
             // Begin the sprite batch to prepare for rendering
             SpriteBatch.Begin();
 
-            // Draw the Logo texture
-            SpriteBatch.Draw(_logo, Vector2.Zero, Color.White);
+            //Ex 1. Draw the Logo texture centered
+            //SpriteBatch.Draw(
+            //    _logo,
+            //    new Vector2(
+            //        (Window.ClientBounds.Width * 0.5f) - (_logo.Width * 0.5f),
+            //        (Window.ClientBounds.Height * 0.5f) - (_logo.Height * 0.5f)), 
+            //    Color.Red);
+
+
+            //Ex 2. Draw the logo texture centered
+            SpriteBatch.Draw(
+                _logo,                                  // texture
+                new Vector2(                            // position
+                    (Window.ClientBounds.Width * 0.5f),
+                    (Window.ClientBounds.Height * 0.5f)),
+                null,                                   // source rectangle (null draws the entire texture)
+                Color.White * 0.5f,                            // color
+                0.0f,                                   // rotation
+                new Vector2(                            // origin            
+                    _logo.Width,
+                    _logo.Height) * 0.5f,
+                1.0f,                                   // scale
+                SpriteEffects.None,                     // effects
+                0.0f                                    // layer depth
+            );
+
+            // Ex 3. Draw the logo texture in the bottom right corner
+            Rectangle iconSourceRect = new Rectangle(0, 0, 128, 128);
+
+            SpriteBatch.Draw(
+                _logo,                                  // texture
+                new Vector2(                            // position
+                    Window.ClientBounds.Width,
+                    Window.ClientBounds.Height),
+                iconSourceRect,                        // source rectangle (null draws the entire texture)
+                Color.White,                           // color
+                0.0f,                                   // rotation
+                new Vector2(                            // origin            
+                    iconSourceRect.Width,
+                    iconSourceRect.Height),
+                1.0f,                                   // scale
+                SpriteEffects.None,                     // effects
+                0.0f                                    // layer depth
+            );
+
+            // Ex 4. Draw Text logo on top left corner
+            Rectangle wordmarkSourceRect = new Rectangle(150, 34, 458, 58);
+
+            SpriteBatch.Draw(
+                _logo,
+                Vector2.Zero,
+                wordmarkSourceRect,
+                Color.White,
+                0.0f,
+                Vector2.Zero,
+                1.0f,
+                SpriteEffects.None,
+                0.0f
+            );
+
 
             // Always end the sprite batch when done rendering
             SpriteBatch.End();
