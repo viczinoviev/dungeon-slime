@@ -9,11 +9,11 @@ namespace DungeonSlime
 {
     public class Game1 : Core
     {
-        // texture region that degines the slime sprite in the atlas.
-        private TextureRegion _slime;
+        // Defines the slime sprite.
+        private Sprite _slime;
         
-        // texture region that defines the bat sprite in the atlas.
-        private TextureRegion _bat;
+        // Defines the bat sprite.
+        private Sprite _bat;
 
         public Game1() : base("Dungeon Slime", 1280, 720, false)
         {
@@ -33,10 +33,12 @@ namespace DungeonSlime
             TextureAtlas atlas = TextureAtlas.FromFile(Content, "images/atlas-definition.xml");
 
             // retrieve the slime region from the atlas.
-            _slime = atlas.GetRegion("slime");
+            _slime = atlas.CreateSprite("slime");
+            _slime.Scale = new Vector2(4.0f, 4.0f);
             
             // retrieve the bat region from the atlas.
-            _bat = atlas.GetRegion("bat");
+            _bat = atlas.CreateSprite("bat");
+            _bat.Scale = new Vector2(4.0f, 4.0f);
 
         }
 
@@ -57,11 +59,11 @@ namespace DungeonSlime
             // Begin the sprite batch to prepare for rendering
             SpriteBatch.Begin(samplerState: SamplerState.PointClamp);
 
-            // Draw the slime texture region at a scale of 4.0
-            _slime.Draw(SpriteBatch, Vector2.Zero, Color.White, 0.0f, Vector2.One, 4.0f, SpriteEffects.None, 0.0f);
+            // Draw the slime sprite.
+            _slime.Draw(SpriteBatch, Vector2.One);
 
-            // Draw the bat texture region 10px to the right of the slime at a scale of 4.0
-            _bat.Draw(SpriteBatch, new Vector2(_slime.Width * 4.0f + 10, 0), Color.White, 0.0f, Vector2.One, 4.0f, SpriteEffects.None, 0.0f);
+            // Draw the bat sprite 10px to the right of the slime.
+            _bat.Draw(SpriteBatch, new Vector2(_slime.Width + 10, 0));
 
             // Always end the sprite batch when done rendering
             SpriteBatch.End();
