@@ -168,7 +168,7 @@ public class MouseInfo
         }
     }
 
-    public void SetPositon(int x, int y)
+    public void SetPosition(int x, int y)
     {
         Mouse.SetPosition(x, y);
         CurrentState = new MouseState(
