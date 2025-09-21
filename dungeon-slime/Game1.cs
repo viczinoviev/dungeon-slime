@@ -17,6 +17,9 @@ public class Game1 : Core
     // Defines the bat animated sprite.
     private AnimatedSprite _bat;
 
+    private Vector2 _batPosition;
+    private Vector2 _batVelocity;
+
     // Tracks the position of the slime.
     private Vector2 _slimePosition;
 
@@ -69,7 +72,43 @@ public class Game1 : Core
         // Check for gamepad input and handle it.
         CheckGamePadInput();
 
+        Circle slimeBounds = new Circle(
+                    (int)(_slimePosition.X + (_slime.Width * 0.5f)),
+                    (int)(_slimePosition.Y + (_slime.Height * 0.5f)),
+                    (int)(_slime.Width * 0.5f)
+                );
+
+        Rectangle screenBounds = new Rectangle(
+            0,
+            0,
+            GraphicsDevice.PresentationParameters.BackBufferWidth,
+            GraphicsDevice.PresentationParameters.BackBufferHeight);
+
+        if (slimeBounds.Left < screenBounds.Left)
+        {
+            _slimePosition.X = screenBounds.Left;
+        }
+        else if (slimeBounds.Right > screenBounds.Right)
+        {
+            _slimePosition.X = screenBounds.Right - _slime.Width;
+        }
+
+        if (slimeBounds.Top < screenBounds.Top)
+        {
+            _slimePosition.Y = screenBounds.Top;
+        }
+        else if (slimeBounds.Bottom > screenBounds.Bottom)
+        {
+            _slimePosition.Y = screenBounds.Bottom - _slime.Height;
+        }
+
         base.Update(gameTime);
+    }
+
+    private void CheckScreenBoundsCollision(Vector2 position, Circle bounds)
+    {
+        
+
     }
 
     private void CheckKeyboardInput()
